@@ -17,3 +17,23 @@ function test() {
 }
 
 test();
+
+// Get Jokes from Joke API
+async function getJokes() {
+    let joke = '';
+    const apiURL = 'https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,racist,sexist,explicit'
+    try {
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        if (data.setup) {
+            joke = `${data.setup} ... ${data.delivery}`;
+        } else {
+            joke = data.joke;
+        }
+        console.log(joke);
+    } catch (error) {
+        // Catch Errors Here
+    }
+}
+
+getJokes();
